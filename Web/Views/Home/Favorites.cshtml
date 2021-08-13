@@ -1,0 +1,18 @@
+﻿@model IList<ApplicationCore.Movies.Dto.FavoriteMovieDto>
+@{ ViewData["Title"] = "Movies"; }
+
+
+@foreach (var item in Model)
+{
+<div class="movie-card">
+    <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + item.Poster))">
+    </div><!--movie-header-->
+    <div class="movie-content">
+        <div class="movie-content-header">
+            <a href="@Url.Action("Details", new { id = item.MovieId })">
+                <h3 class="movie-title">@item.Title</h3>
+            </a>
+        </div>
+    </div><!--movie-content-->
+</div><!--movie-card-->}
+

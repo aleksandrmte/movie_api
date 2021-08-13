@@ -1,0 +1,39 @@
+﻿@model ApplicationCore.Movies.Dto.MovieDto
+@{
+    ViewData["Title"] = "Movie";
+}
+
+
+<div class="movie-card">
+    <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + Model.PosterPath))">
+    </div><!--movie-header-->
+    <div class="movie-content">
+        <div class="movie-content-header">
+            <a href="@Url.Action("Details", new { id = Model.Id })">
+                <h3 class="movie-title">@Model.Title</h3>
+            </a>
+        </div>
+        <div>
+            <a href="/Home/AddFavorite?movieId=@Model.Id" class="btn btn-success">Add to favorite</a>
+        </div>
+        <div class="movie-info">
+            <div class="info-section">
+                <label>Release date</label>
+                <span>@Model.ReleaseDate</span>
+            </div><!--date,time-->
+            <div class="info-section">
+                <label>Vote average</label>
+                <span>@Model.VoteAverage</span>
+            </div><!--screen-->
+            <div class="info-section">
+                <label>Votes</label>
+                <span>@Model.VoteCount</span>
+            </div><!--row-->
+        </div>
+        <div class="movie-info">
+            <p>@Model.Overview</p>
+        </div>
+    </div><!--movie-content-->
+</div><!--movie-card-->
+
+
