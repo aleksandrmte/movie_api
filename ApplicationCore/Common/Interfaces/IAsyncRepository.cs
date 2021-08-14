@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Domain.Common;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Domain.Common;
 
 namespace ApplicationCore.Common.Interfaces
 {

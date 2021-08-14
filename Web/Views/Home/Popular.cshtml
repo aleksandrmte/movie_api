@@ -1,11 +1,11 @@
-﻿@model MoviesPaginationModel
+﻿@model Web.Models.Movies.MoviePaginationViewModel
 @{ ViewData["Title"] = "Movies"; }
 
 <div class="container">
     <h2>Popular</h2>
 </div>
 
-@foreach (var item in Model.Movies)
+@foreach (var item in Model.Results)
 {
     <div class="movie-card">
         <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + item.PosterPath))">

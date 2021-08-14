@@ -5,34 +5,31 @@ using ApplicationCore.Movies.Commands.AddFavorite;
 using ApplicationCore.Movies.Queries.GetFavoriteMovies;
 using ApplicationCore.Movies.Queries.GetMovie;
 using ApplicationCore.Movies.Queries.GetPopularMovies;
+using AutoMapper;
 using Web.Models;
+using Web.Models.Movies;
 
 namespace Web.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(){ }
+        private readonly IMapper _mapper;
+
+        public HomeController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         public async Task<IActionResult> Index(int page = 1)
         {
             var model = await Mediator.Send(new GetTopRatedMoviesQuery(page));
-            return View(new MoviesPaginationModel
-            {
-                TotalPages = model.TotalPages,
-                Page = model.Page,
-                Movies = model.Results
-            });
+            return View(_mapper.Map<MoviePaginationViewModel>(model));
         }
 
         public async Task<IActionResult> Popular(int page = 1)
         {
             var model = await Mediator.Send(new GetPopularMoviesQuery(page));
-            return View(new MoviesPaginationModel
-            {
-                TotalPages = model.TotalPages,
-                Page = model.Page,
-                Movies = model.Results
-            });
+            return View(_mapper.Map<MoviePaginationViewModel>(model));
         }
 
         public async Task<IActionResult> Details(int id)

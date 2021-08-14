@@ -1,5 +1,6 @@
 using ApplicationCore;
-using ApplicationCore.Common.Interfaces;
+using ApplicationCore.Movies.Services.MovieApi;
+using AutoMapper;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Services.MovieApi;
@@ -11,9 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
-using ApplicationCore.Movies.Services.MovieApi;
+using Web.Common.Mappings.Movies;
 using Web.Filters;
-using Web.Services;
 using Web.Settings;
 
 namespace Web
@@ -34,13 +34,12 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             //application.core
-            services.AddApplication();
+            services.AddApplication(Assembly.GetExecutingAssembly());
             //infrastructure
             services.AddInfrastructure(Configuration);
             //web
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
-
+            
             services.AddHttpContextAccessor();
 
             services.AddHealthChecks()

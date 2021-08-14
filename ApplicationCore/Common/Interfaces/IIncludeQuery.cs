@@ -1,7 +1,5 @@
-﻿using System;
+﻿using ApplicationCore.Common.Helpers.Query;
 using System.Collections.Generic;
-using System.Text;
-using ApplicationCore.Common.Helpers.Query;
 
 namespace ApplicationCore.Common.Interfaces
 {
