@@ -3,6 +3,7 @@ using FluentValidation;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ApplicationCore.Movies.Specifications;
 
 namespace ApplicationCore.Movies.Commands.AddFavorite
 {
@@ -24,7 +25,7 @@ namespace ApplicationCore.Movies.Commands.AddFavorite
 
         public async Task<bool> BeUnique(int movieId, CancellationToken cancellationToken)
         {
-            var data = (await _movieRepository.ListAllAsync()).Where(x=>x.MovieId == movieId);
+            var data = await _movieRepository.ListAsync(new GetFavoriteMovieByIdSpecification(movieId));
             return !data.Any();
 
         }

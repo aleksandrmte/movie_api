@@ -48,7 +48,7 @@
                 </li>
             }
 
-            @for (var i = Model.Page < 5 ? 1 : Model.Page - 5; i < (Model.Page + 5 > Model.TotalPages ? Model.TotalPages : Model.Page + 5); i++)
+            @for (var i = Model.Page < 5 ? 1 : Model.Page - 5; i <= (Model.Page + 5 > Model.TotalPages ? Model.TotalPages : Model.Page + 5); i++)
             {
                 <li class="page-item @(i == Model.Page ? "active" : "")">
                     <a class="page-link" href="~/Home/Index?page=@i">@i.ToString()</a>

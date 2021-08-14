@@ -20,7 +20,7 @@ namespace Web.Controllers
             {
                 TotalPages = model.TotalPages,
                 Page = model.Page,
-                Movies = model.Movies
+                Movies = model.Results
             });
         }
 
@@ -31,7 +31,7 @@ namespace Web.Controllers
             {
                 TotalPages = model.TotalPages,
                 Page = model.Page,
-                Movies = model.Movies
+                Movies = model.Results
             });
         }
 
