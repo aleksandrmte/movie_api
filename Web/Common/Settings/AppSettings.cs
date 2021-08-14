@@ -1,4 +1,4 @@
-﻿namespace Web.Settings
+﻿namespace Web.Common.Settings
 {
     public class AppSettings
     {

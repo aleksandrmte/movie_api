@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ApplicationCore.Common.Exceptions;
+﻿using ApplicationCore.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Collections.Generic;
 
-namespace Web.Filters
+namespace Web.Common.Filters
 {
     public class ApiExceptionFilter : ExceptionFilterAttribute
     {

@@ -1,6 +1,5 @@
 using ApplicationCore;
 using ApplicationCore.Movies.Services.MovieApi;
-using AutoMapper;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Services.MovieApi;
@@ -12,9 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
-using Web.Common.Mappings.Movies;
-using Web.Filters;
-using Web.Settings;
+using Web.Common.Filters;
+using Web.Common.Settings;
 
 namespace Web
 {
