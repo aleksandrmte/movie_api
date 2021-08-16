@@ -1,22 +1,23 @@
-﻿@model IList<ApplicationCore.Movies.Dto.FavoriteMovieDto>
-@{ ViewData["Title"] = "Movies"; }
+﻿@model IEnumerable<Web.Models.Movies.MovieViewModel>
+@{ ViewData["Title"] = "Favorites"; }
 
 <div class="container">
-    <h2>Top rated</h2>
+    <h2>Favorites</h2>
 </div>
-
 
 @foreach (var item in Model)
 {
     <div class="movie-card">
-        <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + item.Poster))">
+        <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + item.PosterPath))">
         </div><!--movie-header-->
         <div class="movie-content">
             <div class="movie-content-header">
-                <a href="@Url.Action("Details", new { id = item.MovieId })">
+                <a href="@Url.Action("Details", new { id = item.Id })">
                     <h3 class="movie-title">@item.Title</h3>
                 </a>
             </div>
+            @await Html.PartialAsync("~/Views/Partial/_FavBtn.cshtml", item)
         </div><!--movie-content-->
-    </div><!--movie-card-->}
+    </div><!--movie-card-->
+}
 

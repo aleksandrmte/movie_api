@@ -8,6 +8,8 @@ namespace ApplicationCore.Movies.Commands.AddFavorite
         public int MovieId { get; set; }
         public string Poster { get; set; }
 
+        public AddFavoriteCommand() { }
+
         public AddFavoriteCommand(string title, int movieId, string poster)
         {
             Title = title;

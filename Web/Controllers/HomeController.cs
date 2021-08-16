@@ -1,7 +1,9 @@
-﻿using ApplicationCore.Movies.Queries.GetTopRatedMovies;
+﻿using System.Linq;
+using ApplicationCore.Movies.Queries.GetTopRatedMovies;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ApplicationCore.Movies.Commands.AddFavorite;
+using ApplicationCore.Movies.Commands.DeleteFavorite;
 using ApplicationCore.Movies.Queries.GetFavoriteMovies;
 using ApplicationCore.Movies.Queries.GetMovie;
 using ApplicationCore.Movies.Queries.GetPopularMovies;
@@ -39,21 +41,31 @@ namespace Web.Controllers
 
             var model = await Mediator.Send(new GetMovieQuery(id));
 
-            return View(model);
+            return View(_mapper.Map<MovieViewModel>(model));
         }
 
         public async Task<IActionResult> Favorites()
         {
-            var model = await Mediator.Send(new GetFavoriteMoviesQuery());
-
-            return View(model.Movies);
+            var data = await Mediator.Send(new GetFavoriteMoviesQuery());
+            var model = data.Movies.Select(_mapper.Map<MovieViewModel>);
+            return View(model);
         }
 
-        public async Task<IActionResult> AddFavorite(int movieId)
+        [HttpPost]
+        public async Task<IActionResult> AddFavorite(AddFavoriteCommand command)
         {
-            var model = await Mediator.Send(new GetMovieQuery(movieId));
-            await Mediator.Send(new AddFavoriteCommand(model.Title, movieId, model.PosterPath));
-            return RedirectToAction("Favorites");
+            var model = await Mediator.Send(new GetMovieQuery(command.MovieId));
+            command.Title = model.Title;
+            command.Poster = model.PosterPath;
+            var entityId = await Mediator.Send(command);
+            return Json(entityId);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteFavorite(int id)
+        {
+            await Mediator.Send(new DeleteFavoriteCommand(id));
+            return Json("Ok");
         }
     }
 }

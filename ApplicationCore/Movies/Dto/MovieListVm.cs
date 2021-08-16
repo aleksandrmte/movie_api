@@ -7,7 +7,7 @@ namespace ApplicationCore.Movies.Dto
 {
     public class MovieListVm: IMapFrom<MovieApiResponse>
     {
-        public IList<MovieDto> Results { get; set; }
+        public List<MovieDto> Results { get; set; }
         public int TotalPages { get; set; }
         public int Page { get; set; }
 

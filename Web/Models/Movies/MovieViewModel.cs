@@ -11,5 +11,7 @@
         public string Title { get; set; }
         public double VoteAverage { get; set; }
         public int VoteCount { get; set; }
+        public int FavoriteMovieId { get; set; }
+        public bool IsFavorite { get; set; }
     }
 }

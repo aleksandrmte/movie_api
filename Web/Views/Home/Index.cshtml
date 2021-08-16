@@ -7,31 +7,33 @@
 
 @foreach (var item in Model.Results)
 {
-<div class="movie-card">
-    <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + item.PosterPath))">
-    </div><!--movie-header-->
-    <div class="movie-content">
-        <div class="movie-content-header">
-            <a href="@Url.Action("Details", new { id = item.Id })">
-                <h3 class="movie-title">@item.Title</h3>
-            </a>
-        </div>
-        <div class="movie-info">
-            <div class="info-section">
-                <label>Release date</label>
-                <span>@item.ReleaseDate</span>
-            </div><!--date,time-->
-            <div class="info-section">
-                <label>Vote average</label>
-                <span>@item.VoteAverage</span>
-            </div><!--screen-->
-            <div class="info-section">
-                <label>Votes</label>
-                <span>@item.VoteCount</span>
-            </div><!--row-->
-        </div>
-    </div><!--movie-content-->
-</div><!--movie-card-->}
+    <div class="movie-card">
+        <div class="movie-header" style="background: url(@Url.Content("https://image.tmdb.org/t/p/w500" + item.PosterPath))">
+        </div><!--movie-header-->
+        <div class="movie-content">
+            <div class="movie-content-header">
+                <a href="@Url.Action("Details", new { id = item.Id })">
+                    <h3 class="movie-title">@item.Title</h3>
+                </a>
+            </div>
+            <div class="movie-info">
+                <div class="info-section">
+                    <label>Release date</label>
+                    <span>@item.ReleaseDate</span>
+                </div><!--date,time-->
+                <div class="info-section">
+                    <label>Vote average</label>
+                    <span>@item.VoteAverage</span>
+                </div><!--screen-->
+                <div class="info-section">
+                    <label>Votes</label>
+                    <span>@item.VoteCount</span>
+                </div><!--row-->
+            </div>
+            @await Html.PartialAsync("~/Views/Partial/_FavBtn.cshtml", item)
+        </div><!--movie-content-->
+    </div><!--movie-card-->
+}
 
 
 <div class="container">
@@ -62,7 +64,8 @@
                 </li>
                 <li>
                     <a class="page-link" href="~/Home/Index?page=@Model.TotalPages">@Model.TotalPages</a>
-                </li>}
+                </li>
+}
         </ul>
     </div>
 

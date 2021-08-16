@@ -1,4 +1,4 @@
-﻿@model ApplicationCore.Movies.Dto.MovieDto
+﻿@model Web.Models.Movies.MovieViewModel
 @{
     ViewData["Title"] = "Movie";
 }
@@ -13,9 +13,7 @@
                 <h3 class="movie-title">@Model.Title</h3>
             </a>
         </div>
-        <div>
-            <a href="/Home/AddFavorite?movieId=@Model.Id" class="btn btn-success">Add to favorite</a>
-        </div>
+        @await Html.PartialAsync("~/Views/Partial/_FavBtn.cshtml", Model)
         <div class="movie-info">
             <div class="info-section">
                 <label>Release date</label>

@@ -30,6 +30,7 @@
                     <span>@item.VoteCount</span>
                 </div><!--row-->
             </div>
+            @await Html.PartialAsync("~/Views/Partial/_FavBtn.cshtml", item)
         </div><!--movie-content-->
     </div><!--movie-card-->}
 
